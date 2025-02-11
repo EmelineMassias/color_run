@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{table.list.title}">Liste des Tables</title>
+    <div th:insert="~{common/head :: header}"></div>
+</head>
+
+<body>
+    <div th:insert="~{common/menu :: menu}"></div>
+    <div class="container my-4">
+
+        <h1 class="mt-4" th:text="#{table.list.title}">Liste des Tables</h1>
+        <a class="btn btn-primary mb-3" th:href="@{/tables/create}" th:text="#{table.btn.create}">+ Ajouter une
+            Table</a>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th th:text="#{table.id}">ID</th>
+                    <th th:text="#{table.seatingCapacity}">Nombre de Places</th>
+                    <th th:text="#{table.status}">Statut</th>
+                    <th th:text="#{table.actions}">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="t : ${tables}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.seatingCapacity}"></td>
+                    <td th:text="${t.status}"></td>
+                    <td>
+                        <a th:href="@{/tables/edit/{id}(id=${t.id})}" class="btn btn-sm btn-primary"
+                            th:text="#{table.edit}">Modifier</a>
+                        <a th:href="@{/tables/delete/{id}(id=${t.id})}" class="btn btn-sm btn-danger"
+                            th:text="#{table.delete}">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

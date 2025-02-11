@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{reservation.list.title}">Liste des Réservations</title>
+    <div th:insert="~{common/head :: header}"></div>
+</head>
+
+<body>
+    <div th:insert="~{common/menu :: menu}"></div>
+    <div class="container my-4">
+
+        <h1 class="mt-4" th:text="#{reservation.form.title}">Formulaire de Réservation</h1>
+
+        <form th:action="@{/reservations/save}" th:object="${reservation}" method="post" class="form">
+            <div class="mb-3">
+                <label class="form-label" th:for="*{id}" th:text="#{reservation.id}">ID</label>
+                <input type="text" class="form-control" th:field="*{id}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error for id</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" th:text="#{reservation.clientId}">Client ID :</label>
+                <select class="form-select" th:field="*{clientId}"
+                    th:classappend="${#fields.hasErrors('clientId')} ? 'is-invalid'">
+                    <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.id}"
+                        th:selected="${client.id == reservation.clientId}">
+                    </option>
+                </select>
+                <input type="hidden" th:field="*{clientId}" th:if="${isEditMode}" />
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('clientId')}" th:errors="*{clientId}">Erreur
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" th:text="#{reservation.tableId}">Table ID :</label>
+                <select class="form-select" th:field="*{tableId}"
+                    th:classappend="${#fields.hasErrors('tableId')} ? 'is-invalid'">
+                    <option th:each="table : ${tables}" th:value="${table.id}" th:text="${table.id}"
+                        th:selected="${table.id == reservation.tableId}">
+                    </option>
+                </select>
+                <input type="hidden" th:field="*{tableId}" th:if="${isEditMode}" />
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('tableId')}" th:errors="*{tableId}">Erreur
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" th:for="*{reservationDate}" th:text="#{reservation.reservationDate}">Date de
+                    Réservation</label>
+                <input type="date" class="form-control" th:field="*{reservationDate}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" th:for="*{reservationTime}" th:text="#{reservation.reservationTime}">Heure de
+                    la réservation</label>
+                <input type="time" class="form-control" th:field="*{reservationTime}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('reservationTime')}" th:errors="*{reservationTime}">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" th:for="*{numberOfCovers}" th:text="#{reservation.numberOfCovers}">Nombre de
+                    couverts</label>
+                <input type="number" class="form-control" th:field="*{numberOfCovers}" />
+                <div class="text-danger" th:if="${#fields.hasErrors('numberOfCovers')}" th:errors="*{numberOfCovers}">
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-success" th:text="#{table.save}">Enregistrer</button>
+            <a th:href="@{/reservations}" class="btn btn-secondary" th:text="#{table.cancel}">Annuler</a>
+        </form>
+    </div>
+</body>
+
+</html>

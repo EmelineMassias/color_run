@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{client.list.title}">Liste des clients</title>
+    <div th:insert="~{common/head :: header}"></div>
+</head>
+
+<body>
+    <div th:insert="~{common/menu :: menu}"></div>
+    <div class="container my-4">
+
+        <h1 class="mt-4" th:text="#{client.list.title}">Liste des clients</h1>
+        <a class="btn btn-primary mb-3" th:href="@{/clients/create}" th:text="#{client.btn.create}">+ Ajouter client</a>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th th:text="#{client.id}">ID</th>
+                    <th th:text="#{client.lastname}">Nom</th>
+                    <th th:text="#{client.firstname}">Prénom</th>
+                    <th th:text="#{client.email}">Email</th>
+                    <th th:text="#{client.phoneNumber}">Numéro de téléphone</th>
+                    <th th:text="#{client.gender}">Genre</th>
+                    <th th:text="#{client.isVIP}">VIP ?</th>
+                    <th th:text="#{table.actions}">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${clients}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.lastname}"></td>
+                    <td th:text="${c.firstname}"></td>
+                    <td th:text="${c.email}"></td>
+                    <td th:text="${c.phoneNumber}"></td>
+                    <td th:text="${c.gender}"></td>
+
+                    <td>
+                        <i th:if="${c.isVIP}" class="text-warning">VIP</i>
+                        <i th:if="${!c.isVIP}" class="text-primary">Non-VIP</i>
+                    </td>
+                    <td>
+                        <a th:href="@{/clients/edit/{id}(id=${c.id})}" class="btn btn-sm btn-primary"
+                            th:text="#{table.edit}">Modifier</a>
+                        <a th:href="@{/clients/delete/{id}(id=${c.id})}" class="btn btn-sm btn-danger"
+                            th:text="#{table.delete}">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

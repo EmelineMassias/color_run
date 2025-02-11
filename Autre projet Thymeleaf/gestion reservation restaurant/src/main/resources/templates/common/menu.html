@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:insert="~{common/head :: header}"></div>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-rose" th:fragment="menu">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}" th:text="#{app.title}">Pixel and Plate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/reservations}"
+                            th:text="#{menu.reservations}">Reservations</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/clients}" th:text="#{menu.clients}">Clients</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/tables}" th:text="#{menu.tables}">Tables</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="?lang=fr">🇫🇷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="?lang=en">🇬🇧</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+
+</html>

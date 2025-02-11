@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{reservation.list.title}">Liste des Réservations</title>
+    <div th:insert="~{common/head :: header}"></div>
+</head>
+
+<body>
+    <div th:insert="~{common/menu :: menu}"></div>
+    <div class="container my-4">
+
+        <h1 class="mt-4" th:text="#{reservation.list.title}">Liste des Réservations</h1>
+        <a class="btn btn-primary mb-3" th:href="@{/reservations/create}" th:text="#{reservation.btn.create}">+ Ajouter
+            une Réservation</a>
+
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th th:text="#{reservation.id}">ID</th>
+                    <th th:text="#{reservation.clientId}">Client ID</th>
+                    <th th:text="#{reservation.tableId}">Reservation ID</th>
+                    <th th:text="#{reservation.reservationDate}">Date de Réservation</th>
+                    <th th:text="#{reservation.reservationTime}">Heure de Réservation</th>
+                    <th th:text="#{reservation.numberOfCovers}">Nombre de couverts</th>
+                    <th th:text="#{table.actions}">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="r : ${reservations}">
+                    <td th:text="${r.id}"></td>
+                    <td th:text="${r.clientId}"></td>
+                    <td th:text="${r.tableId}"></td>
+                    <td th:text="${r.reservationDate}"></td>
+                    <td th:text="${r.reservationTime}"></td>
+                    <td th:text="${r.numberOfCovers}"></td>
+                    <td>
+                        <a th:href="@{/reservations/edit/{id}(id=${r.id})}" class="btn btn-sm btn-primary"
+                            th:text="#{table.edit}">Modifier</a>
+                        <a th:href="@{/reservations/delete/{id}(id=${r.id})}" class="btn btn-sm btn-danger"
+                            th:text="#{table.delete}">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

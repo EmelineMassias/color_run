@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="#{app.title}">InsuranceApp</title>
+    <div th:insert="~{common/head :: header}"></div>
+</head>
+
+<body>
+    <div th:insert="~{common/menu :: menu}"></div>
+    <div class="container my-4">
+        <h1 class="my-4" th:text="#{home.title}">Bienvenue sur la page d'accueil</h1>
+        <h2 th:text="#{home.welcome}">Réservations du jour</h2>
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th th:text="#{home.client}">Client</th>
+                    <th th:text="#{home.reservation}">Reservation ID</th>
+                    <th th:text="#{home.table}">Table </th>
+                    <th th:text="#{home.reservationDate}">Date</th>
+                    <th th:text="#{home.reservationTime}">Heure</th>
+                    <th th:text="#{home.numberOfCovers}">Nombre de couverts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="r : ${reservationOfTheDay}">
+                    <td th:text="${r.clientId}"></td>
+                    <td th:text="${r.id}"></td>
+                    <td th:text="${r.tableId}"></td>
+                    <td th:text="${r.reservationDate}"></td>
+                    <td th:text="${r.reservationTime}"></td>
+                    <td th:text="${r.numberOfCovers}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="mt-4" th:text="#{home.availableTables}">Tables Disponibles</h2>
+        <p>Nombre de tables disponibles : <span th:text="${availableTables}"></span></p>
+
+
+        <h2 class="mt-4" th:text="#{home.resume}">Récapitulatif</h2>
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th th:text="#{home.totalTables}">Total Tables</th>
+                    <th th:text="#{home.totalClients}">Total Clients</th>
+                    <th th:text="#{home.totalReservations}">Total Réservations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th th:text="${totalTables}">Total Tables</th>
+                    <th th:text="${totalClients}">Total Clients</th>
+                    <th th:text="${totalReservations}">Total Réservations</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
