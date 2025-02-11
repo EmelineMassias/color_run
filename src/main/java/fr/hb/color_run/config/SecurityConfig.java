@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(
                         request -> request
-                                .requestMatchers("/actuator/**").permitAll()
+                                .requestMatchers( "/**").permitAll()
                                 .requestMatchers("/utilisateurs/login").permitAll()
                                 //.requestMatchers("/private").hasAnyRole("USER", "ADMIN")
                                 //.requestMatchers("/user").hasRole("ADMIN")

@@ -1,7 +1,7 @@
 package fr.hb.color_run.data;
 
 import lombok.AllArgsConstructor;
-import lombok.AllArgsConstructor;
+
 
 
 import org.springframework.boot.CommandLineRunner;
@@ -48,7 +48,7 @@ public class data implements CommandLineRunner{
 
 }
 
-    private void addParticipant() {
+   /* private void addParticipant() {
         ParticipantDto admin= new ParticipantDto();
         admin.setEmail("admin@admin.com");
         admin.setMotDePasse("admin");
@@ -202,20 +202,20 @@ public class data implements CommandLineRunner{
         inscription4.setParticipant(participantService.getParticipantById(1L));
         inscription4.setCourse(courseService.getCourseById(4L)); // Moroccan Desert Ultra-Marathon
         inscriptionService.saveInscription(inscription4);
-    }
+    }*/ 
 
     @Override
     public void run(String... args) throws Exception {
         
         addRole();
 
-        addParticipant();
+        /*addParticipant();
         
         addParcours();        
 
         addCourse();
 
-        addInscription();
+        addInscription();*/
 
     }
 }
